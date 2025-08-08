@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>あなたにおすすめの猫種</h2>
+
+<p><strong>あなたの入力条件（タグ）:</strong></p>
+<ul>
+  {% for key, value in user_tags.items() %}
+    <li>{{ key }}: {{ value }}</li>
+  {% endfor %}
+</ul>
+
+<ul>
+  {% for cat in cats %}
+    <li>
+      <h3>{{ cat.name }}</h3>
+      <img src="{{ cat.image }}" alt="{{ cat.name }}" style="width: 150px;">
+      <p>{{ cat.description }}</p>
+      <p><strong>タグ:</strong> {{ cat.tags | join(', ') }}</p>
+    </li>
+  {% endfor %}
+</ul>
+
+<a href="/recommend">もう一度診断する</a>
+{% endblock %}

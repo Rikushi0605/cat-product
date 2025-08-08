@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>猫のおすすめレコメンド</title>
+</head>
+<body>
+  <h1>あなたに合う猫をおすすめします</h1>
+<form method="POST" action="/result">
+  <label>猫ちゃんの性格は？:</label>
+  <select name="personality" required>
+    <option value="穏やか">穏やか</option>
+    <option value="活発">活発</option>
+    <option value="甘えん坊">甘えん坊</option>
+    <option value="独立心が強い">独立心が強い</option>
+  </select><br>
+
+  <label>どのような住環境？:</label>
+  <select name="environment" required>
+    <option value="マンション">マンション</option>
+    <option value="一軒家">一軒家</option>
+    <option value="ペット可賃貸">ペット可賃貸</option>
+  </select><br>
+
+  <label>ライフスタイル:</label>
+  <select name="lifestyle" required>
+    <option value="在宅時間が長い">在宅時間が長い</option>
+    <option value="外出が多い">外出が多い</option>
+    <option value="子どもがいる">子どもがいる</option>
+  </select><br>
+
+  <label>飼育経験:</label>
+  <select name="experience" required>
+    <option value="未経験(猫を飼ったことがない)">未経験(猫を飼ったことがない)</option>
+    <option value="犬を飼ったことがある">犬を飼ったことがある</option>
+    <option value="他の動物">他の動物</option>
+  </select><br>
+
+  <label>お手入れについて:</label>
+<select name="grooming" required>
+  <option value="毎日でも構わない">毎日でも構わない（しっかり関わりたい）</option>
+  <option value="週に数回程度">週に数回程度ならOK（ほどほどに関わりたい）</option>
+  <option value="なるべく手がかからない方がよい">なるべく手がかからない方がよい</option>
+</select><br>
+
+  <label>アレルギー:</label>
+  <select name="allergy" required>
+    <option value="なし">なし</option>
+    <option value="あり">あり</option>
+  </select><br>
+
+  <button type="submit">診断する</button>
+</form>
+</body>
+</html>
+{% endblock %}
