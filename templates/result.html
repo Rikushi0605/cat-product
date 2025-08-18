@@ -2,13 +2,6 @@
 {% block content %}
 <h2>あなたにおすすめの猫種</h2>
 
-<p><strong>あなたの入力条件（タグ）:</strong></p>
-<ul>
-  {% for key, value in user_tags.items() %}
-    <li>{{ key }}: {{ value }}</li>
-  {% endfor %}
-</ul>
-
 <ul>
   {% for cat in cats %}
     <li>
