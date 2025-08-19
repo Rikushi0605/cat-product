@@ -1,65 +1,84 @@
 {% extends "layout.html" %}
 {% block content %}
-  <h1 class="h3 mb-3">あなたに合う猫をおすすめします</h1>
 
-  <form method="POST" action="/result" class="row g-3">
-    <div class="col-md-6">
-      <label class="form-label">猫ちゃんの性格は？</label>
-      <select name="personality" class="form-select" required>
-        <option value="穏やか">穏やか</option>
-        <option value="活発">活発</option>
-        <option value="甘えん坊">甘えん坊</option>
-        <option value="独立心が強い">独立心が強い</option>
-      </select>
-    </div>
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div class="feature-card ">
+      <!-- タイトル -->
+      <div class="d-flex align-items-center mb-4">
+        <i class="bi bi-stars me-2" style="font-size:1.5rem; color:var(--brand-pink);"></i>
+        <h1 class="h4 m-0 section-title">あなたに合う猫をおすすめします</h1>
+      </div>
 
-    <div class="col-md-6">
-      <label class="form-label">どのような住環境？</label>
-      <select name="environment" class="form-select" required>
-        <option value="マンション">マンション</option>
-        <option value="一軒家">一軒家</option>
-        <option value="ペット可賃貸">ペット可賃貸</option>
-      </select>
-    </div>
+      <!-- フォーム -->
+      <form method="POST" action="/result" class="row g-4">
+        
+        <div class="col-md-6">
+          <label class="form-label fw-bold">猫ちゃんの性格は？</label>
+          <select name="personality" class="form-select" required>
+            <option value="穏やか">穏やか</option>
+            <option value="活発">活発</option>
+            <option value="甘えん坊">甘えん坊</option>
+            <option value="独立心が強い">独立心が強い</option>
+          </select>
+        </div>
 
-    <div class="col-md-6">
-      <label class="form-label">ライフスタイル</label>
-      <select name="lifestyle" class="form-select" required>
-        <option value="在宅時間が長い">在宅時間が長い</option>
-        <option value="外出が多い">外出が多い</option>
-        <option value="子どもがいる">子どもがいる</option>
-      </select>
-    </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">どのような住環境？</label>
+          <select name="environment" class="form-select" required>
+            <option value="マンション">マンション</option>
+            <option value="一軒家">一軒家</option>
+            <option value="ペット可賃貸">ペット可賃貸</option>
+          </select>
+        </div>
 
-    <div class="col-md-6">
-      <label class="form-label">飼育経験</label>
-      <select name="experience" class="form-select" required>
-        <option value="未経験(猫を飼ったことがない)">未経験(猫を飼ったことがない)</option>
-        <option value="犬を飼ったことがある">犬を飼ったことがある</option>
-        <option value="他の動物">他の動物</option>
-      </select>
-    </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">ライフスタイル</label>
+          <select name="lifestyle" class="form-select" required>
+            <option value="在宅時間が長い">在宅時間が長い</option>
+            <option value="外出が多い">外出が多い</option>
+            <option value="子どもがいる">子どもがいる</option>
+          </select>
+        </div>
 
-    <div class="col-md-6">
-      <label class="form-label">お手入れについて</label>
-      <select name="grooming" class="form-select" required>
-        <option value="毎日でも構わない">毎日でも構わない（しっかり関わりたい）</option>
-        <option value="週に数回程度">週に数回程度ならOK（ほどほどに関わりたい）</option>
-        <option value="なるべく手がかからない方がよい">なるべく手がかからない方がよい</option>
-      </select>
-    </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">飼育経験</label>
+          <select name="experience" class="form-select" required>
+            <option value="未経験(猫を飼ったことがない)">未経験（猫を飼ったことがない）</option>
+            <option value="犬を飼ったことがある">犬を飼ったことがある</option>
+            <option value="他の動物">他の動物</option>
+          </select>
+        </div>
 
-    <div class="col-md-6">
-      <label class="form-label">アレルギー</label>
-      <select name="allergy" class="form-select" required>
-        <option value="なし">なし</option>
-        <option value="あり">あり</option>
-      </select>
-    </div>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">お手入れについて</label>
+          <select name="grooming" class="form-select" required>
+            <option value="毎日でも構わない">毎日でも構わない（しっかり関わりたい）</option>
+            <option value="週に数回程度">週に数回程度ならOK（ほどほどに関わりたい）</option>
+            <option value="なるべく手がかからない方がよい">なるべく手がかからない方がよい</option>
+          </select>
+        </div>
 
-    <div class="col-12">
-      <button type="submit" class="btn btn-brand">診断する</button>
-      <a href="/" class="btn btn-link">ホームへ戻る</a>
+        <div class="col-md-6">
+          <label class="form-label fw-bold">アレルギー</label>
+          <select name="allergy" class="form-select" required>
+            <option value="なし">なし</option>
+            <option value="あり">あり</option>
+          </select>
+        </div>
+
+        <!-- ボタン -->
+        <div class="col-12 text-center mt-3">
+          <button type="submit" class="btn btn-brand">
+            <i class="bi bi-search-heart me-1"></i> 診断する
+          </button>
+          <a href="/" class="btn btn-outline-secondary ms-2">
+            <i class="bi bi-house-door me-1"></i> ホームへ戻る
+          </a>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
+</div>
+
 {% endblock %}

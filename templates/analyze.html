@@ -1,12 +1,113 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<div class="enter_btn">
-    <h2>猫の写真をアップロードしてください</h2>
-    <form action = "/upload" method="post" enctype="multipart/form-data">
-        <p><input type="file" id = "upload_file" name = "upload_file" multiple="multiple" class="form-control"></p>
-        <p><input type="submit" value="送信" class="form-control btn btn-primary"></p>
-    </form>
+<!-- ページ見出し -->
+<div class="d-flex align-items-center mb-4">
+  <i class="bi bi-emoji-smile me-2" style="font-size:1.6rem;color:var(--brand-pink);"></i>
+  <h1 class="h4 m-0 section-title">猫の感情分析</h1>
 </div>
+
+<div class="row g-4">
+  <!-- 左：アップロードカード -->
+  <div class="col-lg-7">
+    <div class="feature-card p-4 h-100">
+      <div class="d-flex align-items-center mb-3">
+        <span class="step-num me-2">1</span>
+        <div class="fw-bold">写真をアップロード</div>
+      </div>
+
+      <form id="analyze-form" action="/upload" method="post" enctype="multipart/form-data">
+        <!-- ドロップエリア -->
+        <label for="upload_file" id="dropzone"
+               class="border border-2 border-dashed rounded-4 w-100 p-4 d-flex flex-column align-items-center justify-content-center text-center mb-3"
+               style="border-color:#e3f1ff;">
+          <i class="bi bi-cloud-arrow-up mb-2" style="font-size:2rem;color:var(--brand-blue);"></i>
+          <div class="mb-1">ここに画像をドラッグ＆ドロップ</div>
+          <div class="text-muted small">またはクリックして選択</div>
+          <input type="file" id="upload_file" name="upload_file" accept="image/*" class="d-none" required>
+        </label>
+
+        <!-- プレビュー -->
+        <div id="preview" class="text-center d-none">
+          <img id="preview-img" class="rounded-3 shadow-sm mb-3" style="max-width:100%;height:auto;" alt="プレビュー">
+          <div class="small text-muted" id="preview-name"></div>
+        </div>
+
+        <div class="d-flex gap-2 mt-3">
+          <button type="submit" class="btn btn-brand">
+            <i class="bi bi-stars me-1"></i> 分析する
+          </button>
+          <a href="/" class="btn btn-outline-secondary">ホームへ戻る</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 右：使い方・ヒント -->
+  <div class="col-lg-5">
+    <div class="feature-card p-4 h-100">
+      <div class="d-flex align-items-center mb-3">
+        <span class="step-num me-2">2</span>
+        <div class="fw-bold">うまくいく写真のコツ</div>
+      </div>
+      <ul class="mb-0">
+        <li>猫がひとりで写っている写真を選ぶ</li>
+        <li>顔がはっきり見える明るい写真がベター</li>
+        <li>ブレ・逆光・極端なトリミングは避ける</li>
+      </ul>
+
+      <hr class="my-4">
+
+      <div class="d-flex align-items-center mb-2">
+        <i class="bi bi-paw-fill me-2" style="color:var(--brand-pink);"></i>
+        <div class="fw-bold">対応フォーマット</div>
+      </div>
+      <div class="small text-muted">JPEG / PNG / WEBP（10MB 目安）</div>
+    </div>
+  </div>
+</div>
+
+<!-- ちょい足しスタイル：猫っぽい淡色・点線枠 -->
+<style>
+  #dropzone { background:#f9fbff; cursor:pointer; }
+  #dropzone.dragover { background:#f3f8ff; border-color: var(--brand-blue); }
+  .border-dashed { border-style: dashed !important; }
+</style>
+
+<!-- 最小JS：ドラッグ＆ドロップ & プレビュー -->
+<script>
+  (function(){
+    const dz = document.getElementById('dropzone');
+    const input = document.getElementById('upload_file');
+    const previewWrap = document.getElementById('preview');
+    const previewImg = document.getElementById('preview-img');
+    const previewName = document.getElementById('preview-name');
+
+    dz.addEventListener('click', ()=> input.click());
+
+    ['dragenter','dragover'].forEach(ev=>{
+      dz.addEventListener(ev, e=>{ e.preventDefault(); e.stopPropagation(); dz.classList.add('dragover'); });
+    });
+    ['dragleave','drop'].forEach(ev=>{
+      dz.addEventListener(ev, e=>{ e.preventDefault(); e.stopPropagation(); dz.classList.remove('dragover'); });
+    });
+    dz.addEventListener('drop', e=>{
+      const file = e.dataTransfer.files?.[0];
+      if(file){ input.files = e.dataTransfer.files; showPreview(file); }
+    });
+    input.addEventListener('change', e=>{
+      const file = e.target.files?.[0];
+      if(file){ showPreview(file); }
+    });
+
+    function showPreview(file){
+      if(!file || !file.type.startsWith('image/')) return;
+      const url = URL.createObjectURL(file);
+      previewImg.src = url;
+      previewName.textContent = file.name;
+      previewWrap.classList.remove('d-none');
+    }
+  })();
+</script>
 
 {% endblock %}

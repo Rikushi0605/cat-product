@@ -1,17 +1,46 @@
 {% extends "layout.html" %}
 {% block content %}
-<h2>あなたにおすすめの猫種</h2>
 
-<ul>
-  {% for cat in cats %}
-    <li>
-      <h3>{{ cat.name }}</h3>
-      <img src="{{ cat.image }}" alt="{{ cat.name }}" style="width: 150px;">
-      <p>{{ cat.description }}</p>
-      <p><strong>タグ:</strong> {{ cat.tags | join(', ') }}</p>
-    </li>
-  {% endfor %}
-</ul>
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div class="feature-card p-4 shadow-sm">
 
-<a href="/recommend">もう一度診断する</a>
+      <!-- タイトル -->
+      <div class="d-flex align-items-center mb-4">
+        <i class="bi bi-heart-fill me-2" style="color:var(--brand-pink); font-size:1.5rem;"></i>
+        <h2 class="h4 m-0 section-title">あなたにおすすめの猫種</h2>
+      </div>
+
+      <!-- 猫リスト -->
+      <div class="row g-4">
+        {% for cat in cats %}
+        <div class="col-md-6 col-lg-4">
+          <div class="border rounded-3 p-3 h-100 text-center shadow-sm bg-white">
+            <img src="{{ cat.image }}" alt="{{ cat.name }}" 
+                 class="img-fluid rounded mb-2" style="max-height:180px; object-fit:cover;">
+            <h3 class="h6 fw-bold">{{ cat.name }}</h3>
+            <p class="small text-muted">{{ cat.description }}</p>
+            <div class="small">
+              <i class="bi bi-tags me-1"></i>
+              <span class="text-secondary">{{ cat.tags | join(', ') }}</span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- ボタン -->
+      <div class="text-center mt-4">
+        <a href="/recommend" class="btn btn-brand">
+          <i class="bi bi-arrow-repeat me-1"></i> もう一度診断する
+        </a>
+        <a href="/" class="btn btn-outline-secondary ms-2">
+          <i class="bi bi-house-door me-1"></i> ホームへ戻る
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 {% endblock %}

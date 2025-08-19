@@ -1,10 +1,36 @@
 {% extends "layout.html" %}
 {% block content %}
-<center>
-    <h1>
-        アップされた写真は{{score}}％の確率で{{result}}です。
-    </h1>
-    <img src= "{{ img_path }}" style="margin: 20px; vertical-align: bottom; width: 200px;">
-    <a href="/">他の猫も分析してみる</a>
-</center>
+
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="feature-card p-4 text-center">
+      <!-- 見出し -->
+      <div class="d-flex align-items-center justify-content-center mb-3">
+        <i class="bi bi-emoji-smile me-2" style="font-size:1.5rem;color:var(--brand-pink);"></i>
+        <h2 class="h5 m-0 section-title">感情分析の結果</h2>
+      </div>
+
+      <!-- 結果 -->
+      <p class="lead mb-4">
+        この猫は <strong style="color:var(--brand-blue);">{{ score }}％</strong> の確率で<br>
+        <span class="fw-bold" style="color:var(--brand-pink);">{{ result }}</span> です。
+      </p>
+
+      <!-- 写真プレビュー -->
+      <img src="{{ img_path }}" class="rounded-4 shadow-sm mb-4"
+           style="max-width:320px;width:100%;height:auto;" alt="アップロード画像">
+
+      <!-- ボタン群 -->
+      <div class="d-flex flex-column flex-sm-row gap-2 justify-content-center">
+        <a href="/analyze" class="btn btn-brand">
+          <i class="bi bi-arrow-repeat me-1"></i> もう一度分析する
+        </a>
+        <a href="/" class="btn btn-outline-secondary">
+          <i class="bi bi-house-door me-1"></i> ホームに戻る
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

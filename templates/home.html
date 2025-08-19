@@ -275,31 +275,43 @@
           <div class="feature-card p-4 h-100">
             <h3 class="h5 mb-3">猫種診断の例</h3>
             <div class="row g-3 equalize">
-              <div class="col-md-6">
-                <div class="border rounded-3 p-3 h-100 text-center">
-                  <img src="{{ url_for('static', filename='images/ragu.jpg') }}"
-                  class="sample-cat-img mb-2" alt="ラグドール">
-                    <div class="small text-muted">穏やか / 抱っこ好き / 室内向き</div>
-                  <div class="small mt-1">初心者にも飼いやすく、在宅時間が長い方に。</div>
-                </div>
-              </div>
               
+              <!-- ラグドール -->
               <div class="col-md-6">
-                <div class="border rounded-3 p-3 h-100 text-center">
-                  <img src="{{ url_for('static', filename='images/8.jpg') }}"
-                  class="sample-cat-img mb-2" alt="ロシアンブルー">
-                    <div class="small text-muted">短毛 / 落ち着き / アレルギー配慮</div>
-                  <div class="small mt-1">毛の手入れは控えめでOK。静かな環境が好き。</div>
+                <div class="border rounded-3 p-3 h-100 text-center shadow-sm bg-white">
+                  <img src="{{ url_for('static', filename='images/ragu.jpg') }}"
+                       class="sample-cat-img mb-2" alt="ラグドール">
+                  <h3 class="h6 fw-bold mb-1">ラグドール</h3>
+                  <p class="small mb-2">初心者にも飼いやすく、在宅時間が長い方に。</p>
+                  <div class="small">
+                    <i class="bi bi-tags me-1"></i>
+                    <span class="text-secondary">穏やか, 抱っこ好き, 室内向き</span>
+                  </div>
                 </div>
               </div>
-                          </div>
-            <a class="btn btn-brand mt-3" href="/recommend"><i class="bi bi-stars me-1"></i> あなたの結果を見てみる</a>
+        
+              <!-- ロシアンブルー -->
+              <div class="col-md-6">
+                <div class="border rounded-3 p-3 h-100 text-center shadow-sm bg-white">
+                  <img src="{{ url_for('static', filename='images/8.jpg') }}"
+                       class="sample-cat-img mb-2" alt="ロシアンブルー">
+                  <h3 class="h6 fw-bold mb-1">ロシアンブルー</h3>
+                  <p class="small mb-2">毛の手入れは控えめでOK。静かな環境が好き。</p>
+                  <div class="small">
+                    <i class="bi bi-tags me-1"></i>
+                    <span class="text-secondary">短毛, 落ち着き, アレルギー配慮</span>
+                  </div>
+                </div>
+              </div>
+        
+            </div>
+        
+            <a class="btn btn-brand mt-3" href="/recommend">
+              <i class="bi bi-stars me-1"></i> あなたの結果を見てみる
+            </a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
+        
   <section id="faq" class="py-5">
     <div class="container">
       <h2 class="section-title h1 mb-4">よくある質問</h2>
