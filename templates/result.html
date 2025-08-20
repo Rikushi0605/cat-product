@@ -16,13 +16,18 @@
         {% for cat in cats %}
         <div class="col-md-6 col-lg-4">
           <div class="border rounded-3 p-3 h-100 text-center shadow-sm bg-white">
-            <img src="{{ cat.image }}" alt="{{ cat.name }}" 
-                 class="img-fluid rounded mb-2" style="max-height:180px; object-fit:cover;">
-            <h3 class="h6 fw-bold">{{ cat.name }}</h3>
-            <p class="small text-muted">{{ cat.description }}</p>
+            <img src="{{ cat.image }}" alt="{{ cat.name }}"
+                 class="sample-cat-img mb-2" style="height:180px; width:100%; object-fit:cover; border-radius:8px;">
+            <h3 class="h6 fw-bold mb-1">{{ cat.name }}</h3>
+
+            {# cat_data.py は features を使うのでここを表示 #}
+            <p class="small mb-2">{{ cat.features }}</p>
+
             <div class="small">
               <i class="bi bi-tags me-1"></i>
-              <span class="text-secondary">{{ cat.tags | join(', ') }}</span>
+              <span class="text-secondary">
+                {{ cat.tags | join(', ') }}
+              </span>
             </div>
           </div>
         </div>
